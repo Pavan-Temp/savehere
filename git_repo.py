@@ -6,9 +6,9 @@ from datetime import datetime as day
 
 
 # Replace with your GitHub username, repository name, and access token
-username = os.getenv('Pavan-Temp')
-repository = os.getenv('savehere')
-access_token = os.getenv('254455981391317')
+username = 'Pavan-Temp'
+repository = 'savehere'
+access_token = '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'
 commit_message = 'Add file via Flask'
 
 print(f"my key:{access_token}")
