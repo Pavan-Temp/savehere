@@ -7,7 +7,7 @@ import os
 import requests
 import secrets
 
-app = Flask(_name_)
+app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)
 
 @app.route('/')
@@ -103,5 +103,5 @@ def fuck_off():
     
     return render_template('index.html', status='Unable to Remove', user=session['username'], data=retrive(session['username']))
 
-if _name_ == '_main_':
+if __name__ == '__main__':
     app.run(debug=True)  # Set debug=True for development
