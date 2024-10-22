@@ -8,10 +8,10 @@ import os
 
 def insert(user,url):
     conn = mysql.connector.connect(
-        host = os.getenv('DB_HOST'),
-        user = os.getenv('DB_USER'),
-        password = os.getenv('DB_PWD'),
-        database = os.getenv('DB_NAME')
+        host = 'bbvatjkgxodfj3ar8fsd-mysql.services.clever-cloud.com',
+        user = 'ugruig9xosjpklaa',
+        password = 'qPg7Iimt3Oq89pRG7yOL',
+        database = 'bbvatjkgxodfj3ar8fsd'
     )
     
     if conn.is_connected():
@@ -38,10 +38,10 @@ def retrive(user):
     try:
               print(user)
               conn = mysql.connector.connect(
-                  host='bqtc5ra1i2avhkkayhpf-mysql.services.clever-cloud.com',
-                  user='u3tjxkmmopqlgm1d',
-                  password='DGkarqoI3rPVKmO3C1Z2',
-                  database='bqtc5ra1i2avhkkayhpf'
+                 host = 'bbvatjkgxodfj3ar8fsd-mysql.services.clever-cloud.com',
+        user = 'ugruig9xosjpklaa',
+        password = 'qPg7Iimt3Oq89pRG7yOL',
+        database = 'bbvatjkgxodfj3ar8fsd'
               )
               
               if conn.is_connected():
@@ -82,10 +82,10 @@ def retrive(user):
    
 def delete(user):
     conn = mysql.connector.connect(
-        host='bqtc5ra1i2avhkkayhpf-mysql.services.clever-cloud.com',
-        user='u3tjxkmmopqlgm1d',
-        password='DGkarqoI3rPVKmO3C1Z2',
-        database='bqtc5ra1i2avhkkayhpf'
+       host = 'bbvatjkgxodfj3ar8fsd-mysql.services.clever-cloud.com',
+        user = 'ugruig9xosjpklaa',
+        password = 'qPg7Iimt3Oq89pRG7yOL',
+        database = 'bbvatjkgxodfj3ar8fsd'
     )
     cursor = conn.cursor()
     
@@ -104,10 +104,10 @@ def delete(user):
 
 def delete_file(user,file_name):
     conn = mysql.connector.connect(
-        host='bqtc5ra1i2avhkkayhpf-mysql.services.clever-cloud.com',
-        user='u3tjxkmmopqlgm1d',
-        password='DGkarqoI3rPVKmO3C1Z2',
-        database='bqtc5ra1i2avhkkayhpf'
+        host = 'bbvatjkgxodfj3ar8fsd-mysql.services.clever-cloud.com',
+        user = 'ugruig9xosjpklaa',
+        password = 'qPg7Iimt3Oq89pRG7yOL',
+        database = 'bbvatjkgxodfj3ar8fsd'
     )
     cursor = conn.cursor()
     
