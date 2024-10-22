@@ -56,8 +56,8 @@ def upload_file():
         
         file_content = file.read()
         file_name = file.filename
-        success, file_name = upload_to_github(file_content, file_name)
-
+        success = upload_to_github(file_content, file_name)
+        
         print("File upload success:", success)
         
         if success:
