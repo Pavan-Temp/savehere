@@ -5,7 +5,7 @@ import os
 from datetime import datetime as day
 
 # Get GitHub access token from environment variable for security
-access_token = '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'
+access_token = os.getenv('GITHUB_TOKEN')
 if not access_token:
     print("GitHub token is missing. Please set the GITHUB_TOKEN environment variable.")
     exit(1)
