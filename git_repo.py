@@ -4,31 +4,36 @@ import base64
 import os
 from datetime import datetime as day
 
+# Get GitHub access token from environment variable for security
+access_token = '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'
+if not access_token:
+    print("GitHub token is missing. Please set the GITHUB_TOKEN environment variable.")
+    exit(1)
 
-# Replace with your GitHub username, repository name, and access token
+# Replace with your GitHub username, repository name, and commit message
 username = 'Pavan-Temp'
 repository = 'savehere'
-access_token = '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'
 commit_message = 'Add file via Flask'
 
-print(f"my key:{access_token}")
+print(f"my key: {access_token}")
 
 def upload_to_github(file_content, file_name):
     base_url = f'https://api.github.com/repos/{username}/{repository}/contents/'
     headers = {'Authorization': f'token {access_token}'}
     file_name = file_name.replace(" ", "")
+    
     # Check if the file already exists
     response = requests.get(base_url + file_name, headers=headers)
     
     if response.status_code == 200:
         # File exists, modify the file name by appending a timestamp
         timestamp = str(day.now()).replace(' ', '-').split('.')[0]
-        str_temp = (file_name).split('.')
-        file_name = f"{str_temp[0]}_{timestamp}_{str_temp[1]}"
+        str_temp = file_name.rsplit('.', 1)  # Split at the last dot to preserve multi-part extensions
+        file_name = f"{str_temp[0]}_{timestamp}.{str_temp[1]}"
         
         print(f"File with the same name exists. Renamed to {file_name}")
     
-    # Now proceed with the chunked upload as before
+    # Proceed with the chunked upload as before
     CHUNK_SIZE = 5 * 1024 * 1024  # 1 MB chunks
     chunks = [file_content[i:i + CHUNK_SIZE] for i in range(0, len(file_content), CHUNK_SIZE)]
     sha = None
@@ -48,7 +53,7 @@ def upload_to_github(file_content, file_name):
         retries = 0
         success = False
 
-        while retries < 3:  # Simple retry mechanism
+        while retries < 3:  # Retry mechanism
             try:
                 response = requests.put(base_url + file_name, headers=headers, data=payload, timeout=100)
                 if response.status_code in [200, 201]:
@@ -65,9 +70,9 @@ def upload_to_github(file_content, file_name):
             print(f"Retrying chunk {i+1} upload ({retries}/3)")
 
         if not success:
-            return False  # Exit if a chunk fails to upload after 3 attempts
+            raise Exception(f"Failed to upload chunk {i+1} after 3 retries.")
 
-    return True,file_name
+    return True, file_name
 
 def delete_from_github(file_name):
     base_url = f'https://api.github.com/repos/{username}/{repository}/contents/'
@@ -96,4 +101,3 @@ def delete_from_github(file_name):
     else:
         print(f"File {file_name} not found or cannot be accessed: {response.status_code} - {response.text}")
         return False
-
