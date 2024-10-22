@@ -7,7 +7,7 @@ import os
 import requests
 import secrets
 
-app = Flask(__name__)
+app = Flask(_name_)
 app.secret_key = secrets.token_hex(16)
 
 @app.route('/')
@@ -57,7 +57,7 @@ def upload_file():
         file_name = file.filename
 
         try:
-            file_name, success = upload_to_github(file_content, file_name)
+            success,file_name = upload_to_github(file_content, file_name)
 
             if success:
                 insert(session['username'], file_name)
@@ -72,7 +72,7 @@ def upload_file():
 def download_file():
     file_name = request.form["file_name"]
     print("Attempting to download file:", file_name)
-    file_url = f"https://raw.githubusercontent.com/Pavan-Temp/here/main/{file_name}"
+    file_url = f"https://raw.githubusercontent.com/Pavan-Temp/savehere/main/{file_name}"
     
     try:
         response = requests.get(file_url)
@@ -103,5 +103,5 @@ def fuck_off():
     
     return render_template('index.html', status='Unable to Remove', user=session['username'], data=retrive(session['username']))
 
-if __name__ == '__main__':
+if _name_ == '_main_':
     app.run(debug=True)  # Set debug=True for development
