@@ -2,70 +2,79 @@ import mysql.connector
 import sys
 import os
 
-def insert(user, url):
+
+
+
+
+def insert(user,url):
     conn = mysql.connector.connect(
-        host=os.getenv('DB_HOST'),
-        user=os.getenv('DB_USER'),
-        password=os.getenv('DB_PASSWORD'),
-        database=os.getenv('DB_NAME')
+        host = 'bbvatjkgxodfj3ar8fsd-mysql.services.clever-cloud.com',
+        user = 'ugruig9xosjpklaa',
+        password = 'qPg7Iimt3Oq89pRG7yOL',
+        database = 'bbvatjkgxodfj3ar8fsd'
     )
     
     if conn.is_connected():
-        print("Connection to MySQL DB successful")
+            print("Connection to MySQL DB successful")
+    
     else:
-        sys.exit(1)
+       sys.exit(1)
        
     cursor = conn.cursor()
     
-    print("user:", user)
-    print("url:", url)
+    print("user : ",user)
+    print("url : ",url)
     
-    cursor.execute('''CREATE TABLE IF NOT EXISTS users (id INT AUTO_INCREMENT PRIMARY KEY, user TEXT, url TEXT)''')
+    
+    cursor.execute('''CREATE TABLE IF NOT EXISTS users (id INT AUTO_INCREMENT PRIMARY KEY, user text, url text)''')
+      
     cursor.execute('''INSERT INTO users (user, url) VALUES (%s, %s)''', (user, url))
      
     conn.commit()
     conn.close()
 
-def retrieve(user):
+   
+def retrive(user):
     try:
-        print(user)
-        conn = mysql.connector.connect(
-            host=os.getenv('DB_HOST'),
-            user=os.getenv('DB_USER'),
-            password=os.getenv('DB_PASSWORD'),
-            database=os.getenv('DB_NAME')
-        )
-        
-        if conn.is_connected():
-            print("Connection to MySQL DB successful")
-        else:
-            print("Failed to connect to MySQL")
-            return False
-             
-        cursor = conn.cursor()
-        
-        cursor.execute('''CREATE TABLE IF NOT EXISTS users (id INT AUTO_INCREMENT PRIMARY KEY, user TEXT, url TEXT)''')
-        
-        cursor.execute('''SELECT url FROM users WHERE user = %s''', (user,))
-        row = cursor.fetchall()
-        
-        if not row:
-            cursor.execute('''INSERT INTO users (user, url) VALUES (%s, %s)''', (user, 'NULL'))
-            conn.commit()
-            return 'new'
-             
-        print(row)
-        
-        new_row = []
-        for i in row:
-            if i[0] != 'NULL':
-                print(i)
-                new_row.append(i[0])
+              print(user)
+              conn = mysql.connector.connect(
+                 host = 'bbvatjkgxodfj3ar8fsd-mysql.services.clever-cloud.com',
+        user = 'ugruig9xosjpklaa',
+        password = 'qPg7Iimt3Oq89pRG7yOL',
+        database = 'bbvatjkgxodfj3ar8fsd'
+              )
               
-        print(new_row)
-        return new_row
-    except Exception as e:
-        print("Error:", e)
+              if conn.is_connected():
+                      print("Connection to MySQL DB successful")
+              
+              else:
+                 print("faild to connect to MySQL")
+                 return False
+                 
+              cursor = conn.cursor()
+              
+              cursor.execute('''CREATE TABLE IF NOT EXISTS users (id INT AUTO_INCREMENT PRIMARY KEY, user text, url text)''')
+              
+              cursor.execute('''SELECT url FROM users WHERE user = %s''', (user,))
+              row = cursor.fetchall()
+              
+              if not row :
+                     cursor.execute('''INSERT INTO users (user, url) VALUES (%s, %s)''', (user, 'NULL'))
+                     conn.commit()
+                     return 'new'
+                 
+              print(row)
+                 
+              new_row=[]
+              for i in row:
+                  if i[0] != 'NULL':
+                      print(i)
+                      new_row.append(i[0])
+                  
+              print(new_row)
+              return new_row
+    except:
+        print("Error")
         return False
     finally:
         cursor.close()
@@ -73,41 +82,45 @@ def retrieve(user):
    
 def delete(user):
     conn = mysql.connector.connect(
-        host=os.getenv('DB_HOST'),
-        user=os.getenv('DB_USER'),
-        password=os.getenv('DB_PASSWORD'),
-        database=os.getenv('DB_NAME')
+       host = 'bbvatjkgxodfj3ar8fsd-mysql.services.clever-cloud.com',
+        user = 'ugruig9xosjpklaa',
+        password = 'qPg7Iimt3Oq89pRG7yOL',
+        database = 'bbvatjkgxodfj3ar8fsd'
     )
     cursor = conn.cursor()
     
     if conn.is_connected():
-        print("Connection to MySQL DB successful")
+            print("Connection to MySQL DB successful")
+    
     else:
-        return False
+      return False
     
     cursor.execute('''DELETE FROM users WHERE user = %s''', (user,))
+   
     conn.commit()
     
     cursor.close()
     conn.close()
 
-def delete_file(user, file_name):
+def delete_file(user,file_name):
     conn = mysql.connector.connect(
-        host=os.getenv('DB_HOST'),
-        user=os.getenv('DB_USER'),
-        password=os.getenv('DB_PASSWORD'),
-        database=os.getenv('DB_NAME')
+        host = 'bbvatjkgxodfj3ar8fsd-mysql.services.clever-cloud.com',
+        user = 'ugruig9xosjpklaa',
+        password = 'qPg7Iimt3Oq89pRG7yOL',
+        database = 'bbvatjkgxodfj3ar8fsd'
     )
     cursor = conn.cursor()
     
-    print(user, file_name)
+    print(user,file_name)
     
     if conn.is_connected():
-        print("Connection to MySQL DB successful")
-    else:
-        return False
+            print("Connection to MySQL DB successful")
     
-    cursor.execute('''DELETE FROM users WHERE user = %s AND url = %s''', (user, file_name))
+    else:
+      return False
+    
+    cursor.execute('''DELETE FROM users WHERE user = %s and url = %s''', (user,file_name))
+
     conn.commit()
     
     cursor.close()
