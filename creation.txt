@@ -1,3 +1,0 @@
-python -m venv myenv
-Set-ExecutionPolicy -Scope Process Bypass
-myenv\Scripts\activate
