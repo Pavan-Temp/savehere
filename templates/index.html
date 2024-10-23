@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <title>Save Here</title>
     <link rel="stylesheet" href="{{ url_for('static',filename='style_index.css') }}" >
+    <link rel="icon" href="/static/images/search.png" type="image/png">
+
 </head>
 <body>
     
     <div class="top">
     <h3 >Welcome {{ user }}!</h3>
-    <a href="https://savehere.onrender.com/" target="_blank"><img id="log" src="{{ url_for('static',filename='images/pic1.jpg')}}" ></a>
+    <a href="https://savehere.onrender.com/" target="_self"><img id="log" src="{{ url_for('static',filename='images/pic1.jpg')}}" ></a>
     </div>
     <center>
 
