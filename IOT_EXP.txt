@@ -1,0 +1,171 @@
+2.Aim:to Blink an LED per 1 second after 2 second
+Apparatus: aurdino board,led, connecting wires, arudino IDE software
+program:
+void setup(){
+pinMode(7,OUTPUT);
+Serial.begin(9600);
+}
+void loop(){
+digitalWrite(7,HIGH);
+delay(1000);
+digitalWrite(7,LOW);
+delay(2000);
+}
+-----------------------------------------------------------------------
+#3 Blinking an LED using Push Button
+Apparatus: Arduino board, Arduino IDE Software, Push Button,USB cable, connecting wires
+program:
+void setup(){
+pinMode(4,INPUT);
+pinMode(7,OUTPUT);
+Serial.begin(9600);
+}
+void loop(){
+button=digitalRead(4);
+if(button==HIGH){
+digitalWrite(7,HIGH);
+}
+else{
+digitalWrite(7,LOW);
+}
+
+-----------------------------------------------------------------------
+#4.DHT level sensor with Arduino and print the temperature and humidity readings
+Apparatus:Arduion Board,Arduino IDE Software,USB cable, connecting wires,DHT11 sensor
+Program
+#include "DHT11.h"
+#define DHTPIN 2
+#define DHTTYPE DHT11
+DHT dht(DHTPIN,DHTTYPE);
+void setup(){
+serial.begin(9600);
+dht.begin();
+}
+void loop(){
+float h=dht.readHumidity();
+float t=dht.readTemperature();
+Serial.print("humidity",h);
+Serial.print('Temperature',t);
+
+delay(2000);
+
+}
+
+------------------------------------------------------------------------
+#5 To interface servo motor with Arduino and turn on the motor when push button is pressed!
+Apparatus:
+Servomotor,push button,USB cable, connecting wires
+Program:
+#include "servo.h"
+servo myservo();
+int b=0;
+void setup(){
+myservo.attach(7);
+pinMode(4,INPUT);
+}
+void loop(){
+b=digtalRead(4);
+if(b==HIGH){
+myServo.Write(1);
+}
+else{
+myServo.write(0);
+}
+}
+
+----------------------------------------------------------------------------
+#6 to interface OLED with Arduino board 
+Apparatus:
+OLED, Arduion Board,...
+Program:
+
+#include "write.h"
+#include "Adafruit_GFX.h"
+#include "Adafruit_SSD1306.h"
+#include "Adafruit_sensor.h"
+#include "DHT.h"
+
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 64
+Adafruit_SSD1306 display(SCREEN_WIDTH,SCREEN_HEIGHT);
+#define DHTPIN 2
+#define DHTTYPE DHT11
+DHT dht(DHTPIN,DHTTYPE)
+void setup(){
+Serial.begin(9600);
+dht.begin();
+display.begin(SSD1306_SWITCHCAPVCC,OX3C);
+delay(2000);
+display.clearDisplay();
+}
+void loop(){
+delay(2000);
+float h=dht.readHumidity();
+float t=dht.readTemperature();
+display.clearDisplay();
+display.setTextSize(1);
+display.setCursor(0,0);
+display.print('Temperature:');
+display.setTextsize(2);
+display.setCursor(0,10);
+display.print(t);
+display.setTextsize(1);
+display.setCursor(0,0);
+display.print('Humidity:');
+display.setTextsize(1);
+display.setCursor(0,10);
+display.print(h)
+display.display();
+}
+----------------------------------------------------------------
+
+#7 interface the blutooth module with Arduino and send the data to the smartphone using blutooth
+Apparatus:
+mobile phone,DHT sensor, HC-05 Bluetooth module, Arduino board, Arduion IDE software, USB cable and connecting wires
+program:
+
+#include "softwareserial.h"
+#inclue "DHT.h"
+#define DHTPIN 2
+#defind DHTTYPE DHT11
+DHT dht(DHTPIN,DHTTYPE)
+SoftwareSerial b(10,11);
+void setup(){
+dht.begin();
+b.begin(9600);
+}
+void loop(){
+float t=dht.readTemprature();
+float h=dht.readHumidity();
+B.print(t);
+B.print(h);
+delay(2000);
+}
+------------------------------------------------------------------
+#8 to interface Bluetooth with Arduino and write a program to return LED on/off when 1 or 0 is received from smartphone
+Apparatus:
+Arduino board , HE-05 Bluetooth module, led, connecting wires, Arduino IDE, USB cable and smartphone
+Program:
+#include "softwareserial.h"
+softwareserial b(0,1);
+char data='0';
+void setup()
+{
+serial.begin(9600);
+pinMode(13,HIGH);
+}
+void loop()
+{
+if(serial.available>0){
+data=Serial.read();
+if(data=='1'){
+digitalWrite(13,HIGH);
+}
+else if(data=='0'){
+digitalWrite(13,LOW);
+}
+}
+}
+--------------------------------------------------------------------
+
+
