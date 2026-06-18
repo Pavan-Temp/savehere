@@ -1,0 +1,1491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="host" elementType="Argument">
+            <stringProp name="Argument.name">host</stringProp>
+            <stringProp name="Argument.value">http://44.236.92.100/banking</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="scheme" elementType="Argument">
+            <stringProp name="Argument.name">scheme</stringProp>
+            <stringProp name="Argument.value">https</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="server" elementType="Argument">
+            <stringProp name="Argument.name">server</stringProp>
+            <stringProp name="Argument.value">44.236.92.100</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults">
+        <stringProp name="HTTPSampler.domain">${server}</stringProp>
+        <stringProp name="HTTPSampler.path">/banking</stringProp>
+        <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+          <collectionProp name="Arguments.arguments"/>
+        </elementProp>
+        <stringProp name="HTTPSampler.implementation"></stringProp>
+      </ConfigTestElement>
+      <hashTree/>
+      <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager">
+        <collectionProp name="CookieManager.cookies"/>
+        <boolProp name="CookieManager.clearEachIteration">false</boolProp>
+        <boolProp name="CookieManager.controlledByThreadGroup">false</boolProp>
+      </CookieManager>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group">
+        <intProp name="ThreadGroup.num_threads">1</intProp>
+        <intProp name="ThreadGroup.ramp_time">1</intProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+          <stringProp name="LoopController.loops">1</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <RecordingController guiclass="RecordController" testclass="RecordingController" testname="Recording Controller"/>
+        <hashTree>
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T1_HomePage">
+            <boolProp name="TransactionController.includeTimers">false</boolProp>
+          </TransactionController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="T1_HomePage-1">
+              <stringProp name="HTTPSampler.domain">${server}</stringProp>
+              <stringProp name="HTTPSampler.port">0</stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+              <stringProp name="HTTPSampler.path">/banking/index.php</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="Referer" elementType="Header">
+                    <stringProp name="Header.name">Referer</stringProp>
+                    <stringProp name="Header.value">${host}/staff_login.php</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Language" elementType="Header">
+                    <stringProp name="Header.name">Accept-Language</stringProp>
+                    <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
+                  </elementProp>
+                  <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
+                    <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
+                    <stringProp name="Header.value">1</stringProp>
+                  </elementProp>
+                  <elementProp name="Cache-Control" elementType="Header">
+                    <stringProp name="Header.name">Cache-Control</stringProp>
+                    <stringProp name="Header.value">max-age=0</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Encoding" elementType="Header">
+                    <stringProp name="Header.name">Accept-Encoding</stringProp>
+                    <stringProp name="Header.value">gzip, deflate</stringProp>
+                  </elementProp>
+                  <elementProp name="User-Agent" elementType="Header">
+                    <stringProp name="Header.name">User-Agent</stringProp>
+                    <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept" elementType="Header">
+                    <stringProp name="Header.name">Accept</stringProp>
+                    <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T2_Click_Open_Account">
+            <boolProp name="TransactionController.includeTimers">false</boolProp>
+          </TransactionController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="T2_Click_Open_Account-4">
+              <stringProp name="HTTPSampler.domain">${server}</stringProp>
+              <stringProp name="HTTPSampler.port">0</stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+              <stringProp name="HTTPSampler.path">/banking/customer_reg_form.php</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="Referer" elementType="Header">
+                    <stringProp name="Header.name">Referer</stringProp>
+                    <stringProp name="Header.value">${host}/index.php</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Language" elementType="Header">
+                    <stringProp name="Header.name">Accept-Language</stringProp>
+                    <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
+                  </elementProp>
+                  <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
+                    <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
+                    <stringProp name="Header.value">1</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Encoding" elementType="Header">
+                    <stringProp name="Header.name">Accept-Encoding</stringProp>
+                    <stringProp name="Header.value">gzip, deflate</stringProp>
+                  </elementProp>
+                  <elementProp name="User-Agent" elementType="Header">
+                    <stringProp name="Header.name">User-Agent</stringProp>
+                    <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept" elementType="Header">
+                    <stringProp name="Header.name">Accept</stringProp>
+                    <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+          <AuthManager guiclass="AuthPanel" testclass="AuthManager" testname="HTTP Authorization Manager">
+            <collectionProp name="AuthManager.auth_list">
+              <elementProp name="" elementType="Authorization">
+                <stringProp name="Authorization.url">https://logs.us-west-2.amazonaws.com/</stringProp>
+                <stringProp name="Authorization.username">${AUTH_LOGIN}</stringProp>
+                <stringProp name="Authorization.password">${AUTH_PASSWORD}</stringProp>
+                <stringProp name="Authorization.domain"></stringProp>
+                <stringProp name="Authorization.realm"></stringProp>
+                <stringProp name="Authorization.mechanism">KERBEROS</stringProp>
+              </elementProp>
+            </collectionProp>
+            <boolProp name="AuthManager.controlledByThreadGroup">false</boolProp>
+          </AuthManager>
+          <hashTree/>
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T3_Submit_Open_Account">
+            <boolProp name="TransactionController.includeTimers">false</boolProp>
+          </TransactionController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="T3_Submit_Open_Account-27">
+              <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
+              <stringProp name="HTTPSampler.domain">${server}</stringProp>
+              <stringProp name="HTTPSampler.port">0</stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+              <stringProp name="HTTPSampler.path">/banking/customer_reg_form.php</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="name" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">name</stringProp>
+                    <stringProp name="Argument.value">qwerty</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="gender" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">gender</stringProp>
+                    <stringProp name="Argument.value">Male</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="mobile" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">mobile</stringProp>
+                    <stringProp name="Argument.value">9876543210</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="email" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                    <stringProp name="Argument.name">email</stringProp>
+                    <stringProp name="Argument.value">qwerty@gmail.com</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="landline" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">landline</stringProp>
+                    <stringProp name="Argument.value">9876543210</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="dob" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">dob</stringProp>
+                    <stringProp name="Argument.value">2000-10-09</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="pan_no" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">pan_no</stringProp>
+                    <stringProp name="Argument.value">56789123</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="citizenship" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">citizenship</stringProp>
+                    <stringProp name="Argument.value">123456789</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="homeaddrs" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">homeaddrs</stringProp>
+                    <stringProp name="Argument.value">HomeAddress</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="officeaddrs" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">officeaddrs</stringProp>
+                    <stringProp name="Argument.value">OfficeAddress</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="country" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">country</stringProp>
+                    <stringProp name="Argument.value">US</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="state" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">state</stringProp>
+                    <stringProp name="Argument.value">Virginia</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="city" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">city</stringProp>
+                    <stringProp name="Argument.value">Honolulu</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="pin" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">pin</stringProp>
+                    <stringProp name="Argument.value">12345</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="arealoc" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">arealoc</stringProp>
+                    <stringProp name="Argument.value">Chennai</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="nominee_name" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">nominee_name</stringProp>
+                    <stringProp name="Argument.value">Temp</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="nominee_ac_no" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">nominee_ac_no</stringProp>
+                    <stringProp name="Argument.value">56789123</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="acctype" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">acctype</stringProp>
+                    <stringProp name="Argument.value">Saving</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="submit" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">submit</stringProp>
+                    <stringProp name="Argument.value">Submit</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="Referer" elementType="Header">
+                    <stringProp name="Header.name">Referer</stringProp>
+                    <stringProp name="Header.value">${host}/customer_reg_form.php</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Language" elementType="Header">
+                    <stringProp name="Header.name">Accept-Language</stringProp>
+                    <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
+                  </elementProp>
+                  <elementProp name="Origin" elementType="Header">
+                    <stringProp name="Header.name">Origin</stringProp>
+                    <stringProp name="Header.value">http://${server}</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept" elementType="Header">
+                    <stringProp name="Header.name">Accept</stringProp>
+                    <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7</stringProp>
+                  </elementProp>
+                  <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
+                    <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
+                    <stringProp name="Header.value">1</stringProp>
+                  </elementProp>
+                  <elementProp name="Content-Type" elementType="Header">
+                    <stringProp name="Header.name">Content-Type</stringProp>
+                    <stringProp name="Header.value">application/x-www-form-urlencoded</stringProp>
+                  </elementProp>
+                  <elementProp name="Cache-Control" elementType="Header">
+                    <stringProp name="Header.name">Cache-Control</stringProp>
+                    <stringProp name="Header.value">max-age=0</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Encoding" elementType="Header">
+                    <stringProp name="Header.name">Accept-Encoding</stringProp>
+                    <stringProp name="Header.value">gzip, deflate</stringProp>
+                  </elementProp>
+                  <elementProp name="User-Agent" elementType="Header">
+                    <stringProp name="Header.name">User-Agent</stringProp>
+                    <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+            </hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="T3_Submit_Open_Account-29">
+              <stringProp name="HTTPSampler.domain">${server}</stringProp>
+              <stringProp name="HTTPSampler.port">0</stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+              <stringProp name="HTTPSampler.path">/banking/cust_regfrm_confirm.php</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="Referer" elementType="Header">
+                    <stringProp name="Header.name">Referer</stringProp>
+                    <stringProp name="Header.value">${host}/customer_reg_form.php</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Language" elementType="Header">
+                    <stringProp name="Header.name">Accept-Language</stringProp>
+                    <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
+                  </elementProp>
+                  <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
+                    <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
+                    <stringProp name="Header.value">1</stringProp>
+                  </elementProp>
+                  <elementProp name="Cache-Control" elementType="Header">
+                    <stringProp name="Header.name">Cache-Control</stringProp>
+                    <stringProp name="Header.value">max-age=0</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Encoding" elementType="Header">
+                    <stringProp name="Header.name">Accept-Encoding</stringProp>
+                    <stringProp name="Header.value">gzip, deflate</stringProp>
+                  </elementProp>
+                  <elementProp name="User-Agent" elementType="Header">
+                    <stringProp name="Header.name">User-Agent</stringProp>
+                    <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept" elementType="Header">
+                    <stringProp name="Header.name">Accept</stringProp>
+                    <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T3_Confirm_Open_Account">
+            <boolProp name="TransactionController.includeTimers">false</boolProp>
+          </TransactionController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="T3_Confirm_Open_Account-33">
+              <stringProp name="HTTPSampler.domain">${server}</stringProp>
+              <stringProp name="HTTPSampler.port">0</stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+              <stringProp name="HTTPSampler.path">/banking/cust_regfrm_confirm.php</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="cnfrm-submit" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">cnfrm-submit</stringProp>
+                    <stringProp name="Argument.value">Confirm</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="Referer" elementType="Header">
+                    <stringProp name="Header.name">Referer</stringProp>
+                    <stringProp name="Header.value">${host}/cust_regfrm_confirm.php</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Language" elementType="Header">
+                    <stringProp name="Header.name">Accept-Language</stringProp>
+                    <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
+                  </elementProp>
+                  <elementProp name="Origin" elementType="Header">
+                    <stringProp name="Header.name">Origin</stringProp>
+                    <stringProp name="Header.value">http://${server}</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept" elementType="Header">
+                    <stringProp name="Header.name">Accept</stringProp>
+                    <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7</stringProp>
+                  </elementProp>
+                  <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
+                    <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
+                    <stringProp name="Header.value">1</stringProp>
+                  </elementProp>
+                  <elementProp name="Content-Type" elementType="Header">
+                    <stringProp name="Header.name">Content-Type</stringProp>
+                    <stringProp name="Header.value">application/x-www-form-urlencoded</stringProp>
+                  </elementProp>
+                  <elementProp name="Cache-Control" elementType="Header">
+                    <stringProp name="Header.name">Cache-Control</stringProp>
+                    <stringProp name="Header.value">max-age=0</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Encoding" elementType="Header">
+                    <stringProp name="Header.name">Accept-Encoding</stringProp>
+                    <stringProp name="Header.value">gzip, deflate</stringProp>
+                  </elementProp>
+                  <elementProp name="User-Agent" elementType="Header">
+                    <stringProp name="Header.name">User-Agent</stringProp>
+                    <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+              <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor">
+                <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+                <stringProp name="RegexExtractor.refname">application_num</stringProp>
+                <stringProp name="RegexExtractor.regex">Application number\s+:\s+(\d+)</stringProp>
+                <stringProp name="RegexExtractor.template">$1$</stringProp>
+                <stringProp name="RegexExtractor.default">Not_Found</stringProp>
+                <boolProp name="RegexExtractor.default_empty_value">false</boolProp>
+                <stringProp name="RegexExtractor.match_number">1</stringProp>
+              </RegexExtractor>
+              <hashTree/>
+            </hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="T3_Confirm_Open_Account-53">
+              <stringProp name="HTTPSampler.domain">${server}</stringProp>
+              <stringProp name="HTTPSampler.port">0</stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+              <stringProp name="HTTPSampler.path">/banking/index.php</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="Referer" elementType="Header">
+                    <stringProp name="Header.name">Referer</stringProp>
+                    <stringProp name="Header.value">${host}/cust_regfrm_confirm.php</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Language" elementType="Header">
+                    <stringProp name="Header.name">Accept-Language</stringProp>
+                    <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
+                  </elementProp>
+                  <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
+                    <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
+                    <stringProp name="Header.value">1</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Encoding" elementType="Header">
+                    <stringProp name="Header.name">Accept-Encoding</stringProp>
+                    <stringProp name="Header.value">gzip, deflate</stringProp>
+                  </elementProp>
+                  <elementProp name="User-Agent" elementType="Header">
+                    <stringProp name="Header.name">User-Agent</stringProp>
+                    <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept" elementType="Header">
+                    <stringProp name="Header.name">Accept</stringProp>
+                    <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T4_Click_Staff_Login">
+            <boolProp name="TransactionController.includeTimers">false</boolProp>
+          </TransactionController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="T4_Click_Staff_Login-61">
+              <stringProp name="HTTPSampler.domain">${server}</stringProp>
+              <stringProp name="HTTPSampler.port">0</stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+              <stringProp name="HTTPSampler.path">/banking/staff_login.php</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="Referer" elementType="Header">
+                    <stringProp name="Header.name">Referer</stringProp>
+                    <stringProp name="Header.value">${host}/index.php</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Language" elementType="Header">
+                    <stringProp name="Header.name">Accept-Language</stringProp>
+                    <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
+                  </elementProp>
+                  <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
+                    <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
+                    <stringProp name="Header.value">1</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Encoding" elementType="Header">
+                    <stringProp name="Header.name">Accept-Encoding</stringProp>
+                    <stringProp name="Header.value">gzip, deflate</stringProp>
+                  </elementProp>
+                  <elementProp name="User-Agent" elementType="Header">
+                    <stringProp name="Header.name">User-Agent</stringProp>
+                    <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept" elementType="Header">
+                    <stringProp name="Header.name">Accept</stringProp>
+                    <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T5_Staff_Login">
+            <boolProp name="TransactionController.includeTimers">false</boolProp>
+          </TransactionController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="T5_Staff_Login-64">
+              <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
+              <stringProp name="HTTPSampler.domain">${server}</stringProp>
+              <stringProp name="HTTPSampler.port">0</stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+              <stringProp name="HTTPSampler.path">/banking/staff_login.php</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="staff_id" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">staff_id</stringProp>
+                    <stringProp name="Argument.value">210001</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="password" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">password</stringProp>
+                    <stringProp name="Argument.value">password</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="staff_login-btn" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">staff_login-btn</stringProp>
+                    <stringProp name="Argument.value">LOGIN</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="Referer" elementType="Header">
+                    <stringProp name="Header.name">Referer</stringProp>
+                    <stringProp name="Header.value">${host}/staff_login.php</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Language" elementType="Header">
+                    <stringProp name="Header.name">Accept-Language</stringProp>
+                    <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
+                  </elementProp>
+                  <elementProp name="Origin" elementType="Header">
+                    <stringProp name="Header.name">Origin</stringProp>
+                    <stringProp name="Header.value">http://${server}</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept" elementType="Header">
+                    <stringProp name="Header.name">Accept</stringProp>
+                    <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7</stringProp>
+                  </elementProp>
+                  <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
+                    <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
+                    <stringProp name="Header.value">1</stringProp>
+                  </elementProp>
+                  <elementProp name="Content-Type" elementType="Header">
+                    <stringProp name="Header.name">Content-Type</stringProp>
+                    <stringProp name="Header.value">application/x-www-form-urlencoded</stringProp>
+                  </elementProp>
+                  <elementProp name="Cache-Control" elementType="Header">
+                    <stringProp name="Header.name">Cache-Control</stringProp>
+                    <stringProp name="Header.value">max-age=0</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Encoding" elementType="Header">
+                    <stringProp name="Header.name">Accept-Encoding</stringProp>
+                    <stringProp name="Header.value">gzip, deflate</stringProp>
+                  </elementProp>
+                  <elementProp name="User-Agent" elementType="Header">
+                    <stringProp name="Header.name">User-Agent</stringProp>
+                    <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+            </hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="T5_Staff_Login-65">
+              <stringProp name="HTTPSampler.domain">${server}</stringProp>
+              <stringProp name="HTTPSampler.port">0</stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+              <stringProp name="HTTPSampler.path">/banking/staff_profile.php</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="Referer" elementType="Header">
+                    <stringProp name="Header.name">Referer</stringProp>
+                    <stringProp name="Header.value">${host}/staff_login.php</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Language" elementType="Header">
+                    <stringProp name="Header.name">Accept-Language</stringProp>
+                    <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
+                  </elementProp>
+                  <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
+                    <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
+                    <stringProp name="Header.value">1</stringProp>
+                  </elementProp>
+                  <elementProp name="Cache-Control" elementType="Header">
+                    <stringProp name="Header.name">Cache-Control</stringProp>
+                    <stringProp name="Header.value">max-age=0</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Encoding" elementType="Header">
+                    <stringProp name="Header.name">Accept-Encoding</stringProp>
+                    <stringProp name="Header.value">gzip, deflate</stringProp>
+                  </elementProp>
+                  <elementProp name="User-Agent" elementType="Header">
+                    <stringProp name="Header.name">User-Agent</stringProp>
+                    <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept" elementType="Header">
+                    <stringProp name="Header.name">Accept</stringProp>
+                    <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T6_Click_Approve_Pending_Account">
+            <boolProp name="TransactionController.includeTimers">false</boolProp>
+          </TransactionController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="T6_Click_Approve_Pending_Account-71">
+              <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
+              <stringProp name="HTTPSampler.domain">${server}</stringProp>
+              <stringProp name="HTTPSampler.port">0</stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+              <stringProp name="HTTPSampler.path">/banking/staff_profile.php</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="apprvac" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                    <stringProp name="Argument.name">apprvac</stringProp>
+                    <stringProp name="Argument.value">Approve Pending Account</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="Referer" elementType="Header">
+                    <stringProp name="Header.name">Referer</stringProp>
+                    <stringProp name="Header.value">${host}/staff_profile.php</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Language" elementType="Header">
+                    <stringProp name="Header.name">Accept-Language</stringProp>
+                    <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
+                  </elementProp>
+                  <elementProp name="Origin" elementType="Header">
+                    <stringProp name="Header.name">Origin</stringProp>
+                    <stringProp name="Header.value">http://${server}</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept" elementType="Header">
+                    <stringProp name="Header.name">Accept</stringProp>
+                    <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7</stringProp>
+                  </elementProp>
+                  <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
+                    <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
+                    <stringProp name="Header.value">1</stringProp>
+                  </elementProp>
+                  <elementProp name="Content-Type" elementType="Header">
+                    <stringProp name="Header.name">Content-Type</stringProp>
+                    <stringProp name="Header.value">application/x-www-form-urlencoded</stringProp>
+                  </elementProp>
+                  <elementProp name="Cache-Control" elementType="Header">
+                    <stringProp name="Header.name">Cache-Control</stringProp>
+                    <stringProp name="Header.value">max-age=0</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Encoding" elementType="Header">
+                    <stringProp name="Header.name">Accept-Encoding</stringProp>
+                    <stringProp name="Header.value">gzip, deflate</stringProp>
+                  </elementProp>
+                  <elementProp name="User-Agent" elementType="Header">
+                    <stringProp name="Header.name">User-Agent</stringProp>
+                    <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+            </hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="T6_Click_Approve_Pending_Account-72">
+              <stringProp name="HTTPSampler.domain">${server}</stringProp>
+              <stringProp name="HTTPSampler.port">0</stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+              <stringProp name="HTTPSampler.path">/banking/pending_customers.php</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="Referer" elementType="Header">
+                    <stringProp name="Header.name">Referer</stringProp>
+                    <stringProp name="Header.value">${host}/staff_profile.php</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Language" elementType="Header">
+                    <stringProp name="Header.name">Accept-Language</stringProp>
+                    <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
+                  </elementProp>
+                  <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
+                    <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
+                    <stringProp name="Header.value">1</stringProp>
+                  </elementProp>
+                  <elementProp name="Cache-Control" elementType="Header">
+                    <stringProp name="Header.name">Cache-Control</stringProp>
+                    <stringProp name="Header.value">max-age=0</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Encoding" elementType="Header">
+                    <stringProp name="Header.name">Accept-Encoding</stringProp>
+                    <stringProp name="Header.value">gzip, deflate</stringProp>
+                  </elementProp>
+                  <elementProp name="User-Agent" elementType="Header">
+                    <stringProp name="Header.name">User-Agent</stringProp>
+                    <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept" elementType="Header">
+                    <stringProp name="Header.name">Accept</stringProp>
+                    <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T7_Search_Pending_Accounts">
+            <boolProp name="TransactionController.includeTimers">false</boolProp>
+          </TransactionController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="T7_Search_Pending_Accounts-81">
+              <stringProp name="HTTPSampler.domain">${server}</stringProp>
+              <stringProp name="HTTPSampler.port">0</stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+              <stringProp name="HTTPSampler.path">/banking/pending_customers.php</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="application_no" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">application_no</stringProp>
+                    <stringProp name="Argument.value">${application_num}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                  <elementProp name="search_application" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">search_application</stringProp>
+                    <stringProp name="Argument.value">Search</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="Referer" elementType="Header">
+                    <stringProp name="Header.name">Referer</stringProp>
+                    <stringProp name="Header.value">${host}/pending_customers.php</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Language" elementType="Header">
+                    <stringProp name="Header.name">Accept-Language</stringProp>
+                    <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
+                  </elementProp>
+                  <elementProp name="Origin" elementType="Header">
+                    <stringProp name="Header.name">Origin</stringProp>
+                    <stringProp name="Header.value">http://${server}</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept" elementType="Header">
+                    <stringProp name="Header.name">Accept</stringProp>
+                    <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7</stringProp>
+                  </elementProp>
+                  <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
+                    <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
+                    <stringProp name="Header.value">1</stringProp>
+                  </elementProp>
+                  <elementProp name="Content-Type" elementType="Header">
+                    <stringProp name="Header.name">Content-Type</stringProp>
+                    <stringProp name="Header.value">application/x-www-form-urlencoded</stringProp>
+                  </elementProp>
+                  <elementProp name="Cache-Control" elementType="Header">
+                    <stringProp name="Header.name">Cache-Control</stringProp>
+                    <stringProp name="Header.value">max-age=0</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Encoding" elementType="Header">
+                    <stringProp name="Header.name">Accept-Encoding</stringProp>
+                    <stringProp name="Header.value">gzip, deflate</stringProp>
+                  </elementProp>
+                  <elementProp name="User-Agent" elementType="Header">
+                    <stringProp name="Header.name">User-Agent</stringProp>
+                    <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T8_Approve_Pending_Accounts">
+            <boolProp name="TransactionController.includeTimers">false</boolProp>
+          </TransactionController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="T8_Approve_Pending_Accounts-86">
+              <stringProp name="HTTPSampler.domain">${server}</stringProp>
+              <stringProp name="HTTPSampler.port">0</stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+              <stringProp name="HTTPSampler.path">/banking/pending_customers.php</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="approve_cust" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">approve_cust</stringProp>
+                    <stringProp name="Argument.value">Approve</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="Referer" elementType="Header">
+                    <stringProp name="Header.name">Referer</stringProp>
+                    <stringProp name="Header.value">${host}/pending_customers.php</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Language" elementType="Header">
+                    <stringProp name="Header.name">Accept-Language</stringProp>
+                    <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
+                  </elementProp>
+                  <elementProp name="Origin" elementType="Header">
+                    <stringProp name="Header.name">Origin</stringProp>
+                    <stringProp name="Header.value">http://${server}</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept" elementType="Header">
+                    <stringProp name="Header.name">Accept</stringProp>
+                    <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7</stringProp>
+                  </elementProp>
+                  <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
+                    <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
+                    <stringProp name="Header.value">1</stringProp>
+                  </elementProp>
+                  <elementProp name="Content-Type" elementType="Header">
+                    <stringProp name="Header.name">Content-Type</stringProp>
+                    <stringProp name="Header.value">application/x-www-form-urlencoded</stringProp>
+                  </elementProp>
+                  <elementProp name="Cache-Control" elementType="Header">
+                    <stringProp name="Header.name">Cache-Control</stringProp>
+                    <stringProp name="Header.value">max-age=0</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Encoding" elementType="Header">
+                    <stringProp name="Header.name">Accept-Encoding</stringProp>
+                    <stringProp name="Header.value">gzip, deflate</stringProp>
+                  </elementProp>
+                  <elementProp name="User-Agent" elementType="Header">
+                    <stringProp name="Header.name">User-Agent</stringProp>
+                    <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+            </hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="T8_Approve_Pending_Accounts-96">
+              <stringProp name="HTTPSampler.domain">${server}</stringProp>
+              <stringProp name="HTTPSampler.port">0</stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+              <stringProp name="HTTPSampler.path">/banking/staff_profile.php</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="Referer" elementType="Header">
+                    <stringProp name="Header.name">Referer</stringProp>
+                    <stringProp name="Header.value">${host}/pending_customers.php</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Language" elementType="Header">
+                    <stringProp name="Header.name">Accept-Language</stringProp>
+                    <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
+                  </elementProp>
+                  <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
+                    <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
+                    <stringProp name="Header.value">1</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Encoding" elementType="Header">
+                    <stringProp name="Header.name">Accept-Encoding</stringProp>
+                    <stringProp name="Header.value">gzip, deflate</stringProp>
+                  </elementProp>
+                  <elementProp name="User-Agent" elementType="Header">
+                    <stringProp name="Header.name">User-Agent</stringProp>
+                    <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept" elementType="Header">
+                    <stringProp name="Header.name">Accept</stringProp>
+                    <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T9_View_Active_Customers">
+            <boolProp name="TransactionController.includeTimers">false</boolProp>
+          </TransactionController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="T9_View_Active_Customers-104">
+              <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
+              <stringProp name="HTTPSampler.domain">${server}</stringProp>
+              <stringProp name="HTTPSampler.port">0</stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+              <stringProp name="HTTPSampler.path">/banking/staff_profile.php</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="viewdet" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                    <stringProp name="Argument.name">viewdet</stringProp>
+                    <stringProp name="Argument.value">View Active Customer</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="Referer" elementType="Header">
+                    <stringProp name="Header.name">Referer</stringProp>
+                    <stringProp name="Header.value">${host}/staff_profile.php</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Language" elementType="Header">
+                    <stringProp name="Header.name">Accept-Language</stringProp>
+                    <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
+                  </elementProp>
+                  <elementProp name="Origin" elementType="Header">
+                    <stringProp name="Header.name">Origin</stringProp>
+                    <stringProp name="Header.value">http://${server}</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept" elementType="Header">
+                    <stringProp name="Header.name">Accept</stringProp>
+                    <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7</stringProp>
+                  </elementProp>
+                  <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
+                    <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
+                    <stringProp name="Header.value">1</stringProp>
+                  </elementProp>
+                  <elementProp name="Content-Type" elementType="Header">
+                    <stringProp name="Header.name">Content-Type</stringProp>
+                    <stringProp name="Header.value">application/x-www-form-urlencoded</stringProp>
+                  </elementProp>
+                  <elementProp name="Cache-Control" elementType="Header">
+                    <stringProp name="Header.name">Cache-Control</stringProp>
+                    <stringProp name="Header.value">max-age=0</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Encoding" elementType="Header">
+                    <stringProp name="Header.name">Accept-Encoding</stringProp>
+                    <stringProp name="Header.value">gzip, deflate</stringProp>
+                  </elementProp>
+                  <elementProp name="User-Agent" elementType="Header">
+                    <stringProp name="Header.name">User-Agent</stringProp>
+                    <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+              <HtmlExtractor guiclass="HtmlExtractorGui" testclass="HtmlExtractor" testname="CSS Selector Extractor">
+                <stringProp name="HtmlExtractor.refname">DebitCardNo</stringProp>
+                <stringProp name="HtmlExtractor.expr">table tr td:nth-child(11) </stringProp>
+                <stringProp name="HtmlExtractor.attribute"></stringProp>
+                <stringProp name="HtmlExtractor.default">Not_Found</stringProp>
+                <boolProp name="HtmlExtractor.default_empty_value">false</boolProp>
+                <stringProp name="HtmlExtractor.match_number">-1</stringProp>
+                <stringProp name="HtmlExtractor.extractor_impl"></stringProp>
+              </HtmlExtractor>
+              <hashTree/>
+              <HtmlExtractor guiclass="HtmlExtractorGui" testclass="HtmlExtractor" testname="CSS Selector Extractor">
+                <stringProp name="HtmlExtractor.refname">Name</stringProp>
+                <stringProp name="HtmlExtractor.expr">table tr td:nth-child(2)</stringProp>
+                <stringProp name="HtmlExtractor.attribute"></stringProp>
+                <stringProp name="HtmlExtractor.default">Not_Found</stringProp>
+                <boolProp name="HtmlExtractor.default_empty_value">false</boolProp>
+                <stringProp name="HtmlExtractor.match_number">-1</stringProp>
+                <stringProp name="HtmlExtractor.extractor_impl"></stringProp>
+              </HtmlExtractor>
+              <hashTree/>
+              <HtmlExtractor guiclass="HtmlExtractorGui" testclass="HtmlExtractor" testname="CSS Selector Extractor">
+                <stringProp name="HtmlExtractor.refname">DOB</stringProp>
+                <stringProp name="HtmlExtractor.expr">table tr td:nth-child(7)</stringProp>
+                <stringProp name="HtmlExtractor.attribute"></stringProp>
+                <stringProp name="HtmlExtractor.default">Not_Found</stringProp>
+                <boolProp name="HtmlExtractor.default_empty_value">false</boolProp>
+                <stringProp name="HtmlExtractor.match_number">-1</stringProp>
+                <stringProp name="HtmlExtractor.extractor_impl"></stringProp>
+              </HtmlExtractor>
+              <hashTree/>
+              <HtmlExtractor guiclass="HtmlExtractorGui" testclass="HtmlExtractor" testname="CSS Selector Extractor">
+                <stringProp name="HtmlExtractor.refname">PAN</stringProp>
+                <stringProp name="HtmlExtractor.expr">table tr td:nth-child(9)</stringProp>
+                <stringProp name="HtmlExtractor.attribute"></stringProp>
+                <stringProp name="HtmlExtractor.default">Not_Found</stringProp>
+                <boolProp name="HtmlExtractor.default_empty_value">false</boolProp>
+                <stringProp name="HtmlExtractor.match_number">-1</stringProp>
+                <stringProp name="HtmlExtractor.extractor_impl"></stringProp>
+              </HtmlExtractor>
+              <hashTree/>
+              <HtmlExtractor guiclass="HtmlExtractorGui" testclass="HtmlExtractor" testname="CSS Selector Extractor">
+                <stringProp name="HtmlExtractor.refname">Mobile</stringProp>
+                <stringProp name="HtmlExtractor.expr">table tr td:nth-child(5)</stringProp>
+                <stringProp name="HtmlExtractor.attribute"></stringProp>
+                <stringProp name="HtmlExtractor.default">Not_Found</stringProp>
+                <boolProp name="HtmlExtractor.default_empty_value">false</boolProp>
+                <stringProp name="HtmlExtractor.match_number">-1</stringProp>
+                <stringProp name="HtmlExtractor.extractor_impl"></stringProp>
+              </HtmlExtractor>
+              <hashTree/>
+              <HtmlExtractor guiclass="HtmlExtractorGui" testclass="HtmlExtractor" testname="CSS Selector Extractor">
+                <stringProp name="HtmlExtractor.refname">AccountNo</stringProp>
+                <stringProp name="HtmlExtractor.expr">table tr td:nth-child(4)</stringProp>
+                <stringProp name="HtmlExtractor.attribute"></stringProp>
+                <stringProp name="HtmlExtractor.default">Not_Found</stringProp>
+                <boolProp name="HtmlExtractor.default_empty_value">false</boolProp>
+                <stringProp name="HtmlExtractor.match_number">-1</stringProp>
+                <stringProp name="HtmlExtractor.extractor_impl"></stringProp>
+              </HtmlExtractor>
+              <hashTree/>
+            </hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="T9_View_Active_Customers-105">
+              <stringProp name="HTTPSampler.domain">${server}</stringProp>
+              <stringProp name="HTTPSampler.port">0</stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+              <stringProp name="HTTPSampler.path">/banking/active_customers.php</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="Referer" elementType="Header">
+                    <stringProp name="Header.name">Referer</stringProp>
+                    <stringProp name="Header.value">${host}/staff_profile.php</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Language" elementType="Header">
+                    <stringProp name="Header.name">Accept-Language</stringProp>
+                    <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
+                  </elementProp>
+                  <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
+                    <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
+                    <stringProp name="Header.value">1</stringProp>
+                  </elementProp>
+                  <elementProp name="Cache-Control" elementType="Header">
+                    <stringProp name="Header.name">Cache-Control</stringProp>
+                    <stringProp name="Header.value">max-age=0</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Encoding" elementType="Header">
+                    <stringProp name="Header.name">Accept-Encoding</stringProp>
+                    <stringProp name="Header.value">gzip, deflate</stringProp>
+                  </elementProp>
+                  <elementProp name="User-Agent" elementType="Header">
+                    <stringProp name="Header.name">User-Agent</stringProp>
+                    <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept" elementType="Header">
+                    <stringProp name="Header.name">Accept</stringProp>
+                    <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+            </hashTree>
+            <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler">
+              <stringProp name="cacheKey">true</stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="script">int rowCount = Integer.parseInt(vars.get(&quot;DebitCardNo_matchNr&quot;))
+List&lt;Map&gt; candidates = []
+
+for (int i = 1; i &lt;= rowCount; i++) {
+    String debitCard = vars.get(&quot;DebitCardNo_&quot; + i)
+    if (debitCard == null || debitCard.trim().isEmpty()) {
+        Map customer = [
+            name: vars.get(&quot;Name_&quot; + i),
+            dob: vars.get(&quot;DOB_&quot; + i),
+            pan: vars.get(&quot;PAN_&quot; + i),
+            mobile: vars.get(&quot;Mobile_&quot; + i),
+            accountNo: vars.get(&quot;AccountNo_&quot; + i)
+        ]
+        candidates.add(customer)
+    }
+}
+
+// Randomly select one
+if (!candidates.isEmpty()) {
+    def chosen = candidates[new Random().nextInt(candidates.size())]
+    log.info(&quot;Chosen customer: &quot; + chosen)
+    vars.put(&quot;SelectedName&quot;, chosen.name)
+    vars.put(&quot;SelectedDOB&quot;, chosen.dob)
+    vars.put(&quot;SelectedPAN&quot;, chosen.pan)
+    vars.put(&quot;SelectedMobile&quot;, chosen.mobile)
+    vars.put(&quot;SelectedAccountNo&quot;, chosen.accountNo)
+}
+</stringProp>
+              <stringProp name="scriptLanguage">groovy</stringProp>
+            </JSR223Sampler>
+            <hashTree/>
+          </hashTree>
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="T10_Staff_Logout">
+            <boolProp name="TransactionController.includeTimers">false</boolProp>
+          </TransactionController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="T10_Staff_Logout-109">
+              <stringProp name="TestPlan.comments">Detected the start of a redirect chain</stringProp>
+              <stringProp name="HTTPSampler.domain">${server}</stringProp>
+              <stringProp name="HTTPSampler.port">0</stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+              <stringProp name="HTTPSampler.path">/banking/staff_logout.php</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="Referer" elementType="Header">
+                    <stringProp name="Header.name">Referer</stringProp>
+                    <stringProp name="Header.value">${host}/active_customers.php</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Language" elementType="Header">
+                    <stringProp name="Header.name">Accept-Language</stringProp>
+                    <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
+                  </elementProp>
+                  <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
+                    <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
+                    <stringProp name="Header.value">1</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Encoding" elementType="Header">
+                    <stringProp name="Header.name">Accept-Encoding</stringProp>
+                    <stringProp name="Header.value">gzip, deflate</stringProp>
+                  </elementProp>
+                  <elementProp name="User-Agent" elementType="Header">
+                    <stringProp name="Header.name">User-Agent</stringProp>
+                    <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept" elementType="Header">
+                    <stringProp name="Header.name">Accept</stringProp>
+                    <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+            </hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="T10_Staff_Logout-110">
+              <stringProp name="HTTPSampler.domain">${server}</stringProp>
+              <stringProp name="HTTPSampler.port">0</stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">UTF-8</stringProp>
+              <stringProp name="HTTPSampler.path">/banking/staff_login.php</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="Referer" elementType="Header">
+                    <stringProp name="Header.name">Referer</stringProp>
+                    <stringProp name="Header.value">${host}/active_customers.php</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Language" elementType="Header">
+                    <stringProp name="Header.name">Accept-Language</stringProp>
+                    <stringProp name="Header.value">en-US,en;q=0.9</stringProp>
+                  </elementProp>
+                  <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
+                    <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
+                    <stringProp name="Header.value">1</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Encoding" elementType="Header">
+                    <stringProp name="Header.name">Accept-Encoding</stringProp>
+                    <stringProp name="Header.value">gzip, deflate</stringProp>
+                  </elementProp>
+                  <elementProp name="User-Agent" elementType="Header">
+                    <stringProp name="Header.name">User-Agent</stringProp>
+                    <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept" elementType="Header">
+                    <stringProp name="Header.name">Accept</stringProp>
+                    <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+        </hashTree>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler">
+          <boolProp name="displayJMeterProperties">false</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree/>
+      </hashTree>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>false</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>false</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>true</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <hostname>true</hostname>
+            <threadCounts>true</threadCounts>
+            <sampleCount>true</sampleCount>
+          </value>
+        </objProp>
+        <stringProp name="filename">C:\Temp\create_result.xml</stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ProxyControl guiclass="ProxyControlGui" testclass="ProxyControl" testname="HTTP(S) Test Script Recorder" enabled="false">
+        <stringProp name="ProxyControlGui.port">8090</stringProp>
+        <collectionProp name="ProxyControlGui.exclude_list">
+          <stringProp name="1179605444">(?i).*\.(bmp|css|js|gif|ico|jpe?g|png|swf|eot|otf|ttf|mp4|woff|woff2)</stringProp>
+          <stringProp name="-88591710">www\.download\.windowsupdate\.com.*</stringProp>
+          <stringProp name="1323576868">toolbarqueries\.google\..*</stringProp>
+          <stringProp name="1629558731">clients.*\.google.*</stringProp>
+          <stringProp name="-1899150273">api\.bing\.com.*</stringProp>
+          <stringProp name="305776760">(?i).*\.(bmp|css|js|gif|ico|jpe?g|png|swf|eot|otf|ttf|mp4|woff|woff2)[\?;].*</stringProp>
+          <stringProp name="1779943373">us\.update\.toolbar\.yahoo\.com.*</stringProp>
+          <stringProp name="1815174768">safebrowsing.*\.google\.com.*</stringProp>
+          <stringProp name="587935979">g\.msn.*</stringProp>
+          <stringProp name="110431874">.*msg\.yahoo\.com.*</stringProp>
+          <stringProp name="1206954446">tiles.*\.mozilla\.com.*</stringProp>
+          <stringProp name="-1314416226">sqm\.microsoft\.com.*</stringProp>
+          <stringProp name="1726898318">geo\.yahoo\.com.*</stringProp>
+          <stringProp name="-192420923">.*yimg\.com.*</stringProp>
+          <stringProp name="2118375536">www\.google-analytics\.com.*</stringProp>
+          <stringProp name="1739087931">http?://self-repair\.mozilla\.org.*</stringProp>
+          <stringProp name="805311387">windowsupdate\.microsoft\.com.*</stringProp>
+          <stringProp name="-1424663473">.*detectportal\.firefox\.com.*</stringProp>
+          <stringProp name="11072252">.*toolbar\.yahoo\.com.*</stringProp>
+          <stringProp name="-190610036">.*\.google\.com.*/safebrowsing/.*</stringProp>
+          <stringProp name="-958112859">toolbar\.google\.com.*</stringProp>
+          <stringProp name="-1279148329">pgq\.yahoo\.com.*</stringProp>
+          <stringProp name="-1435252351">toolbar\.avg\.com/.*</stringProp>
+          <stringProp name="-576820688">toolbar\.msn\.com.*</stringProp>
+        </collectionProp>
+        <collectionProp name="ProxyControlGui.include_list"/>
+        <boolProp name="ProxyControlGui.capture_http_headers">true</boolProp>
+        <intProp name="ProxyControlGui.grouping_mode">4</intProp>
+        <boolProp name="ProxyControlGui.add_assertion">false</boolProp>
+        <stringProp name="ProxyControlGui.sampler_type_name"></stringProp>
+        <boolProp name="ProxyControlGui.sampler_redirect_automatically">false</boolProp>
+        <boolProp name="ProxyControlGui.sampler_follow_redirects">true</boolProp>
+        <boolProp name="ProxyControlGui.use_keepalive">true</boolProp>
+        <boolProp name="ProxyControlGui.sampler_download_images">false</boolProp>
+        <boolProp name="ProxyControlGui.regex_match">true</boolProp>
+        <stringProp name="ProxyControlGui.content_type_include"></stringProp>
+        <stringProp name="ProxyControlGui.content_type_exclude"></stringProp>
+        <boolProp name="ProxyControlGui.notify_child_sl_filtered">false</boolProp>
+        <stringProp name="ProxyControlGui.proxy_prefix_http_sampler_name">T10_Staff_Logout</stringProp>
+        <intProp name="ProxyControlGui.proxy_http_sampler_naming_mode">1</intProp>
+        <stringProp name="ProxyControlGui.proxy_pause_http_sampler"></stringProp>
+        <boolProp name="ProxyControlGui.detect_graphql_request">true</boolProp>
+        <stringProp name="ProxyControlGui.default_encoding">UTF-8</stringProp>
+      </ProxyControl>
+      <hashTree>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>true</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>true</responseData>
+              <samplerData>true</samplerData>
+              <xml>true</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>true</responseHeaders>
+              <requestHeaders>true</requestHeaders>
+              <responseDataOnError>true</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <url>true</url>
+              <fileName>true</fileName>
+              <hostname>true</hostname>
+              <threadCounts>true</threadCounts>
+              <sampleCount>true</sampleCount>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename">recording.xml</stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
